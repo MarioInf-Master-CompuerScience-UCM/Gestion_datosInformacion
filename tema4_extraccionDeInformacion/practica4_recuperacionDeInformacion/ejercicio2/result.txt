@@ -1,0 +1,6 @@
+*** Resultado consulta_frase:  it sounds to ***
+../20news-18828/alt.atheism/51120
+../20news-18828/soc.religion.christian/21635
+../20news-18828/rec.sport.baseball/105023
+../20news-18828/rec.sport.baseball/104963
+../20news-18828/rec.sport.baseball/105037

@@ -1,0 +1,64 @@
+############################# Paso 0: Abrir un terminal
+
+
+############################# Paso 1: Inicializar servidor de datos
+
+cd
+rm -rf nosql
+mkdir nosql
+mkdir nosql/mongo
+for j in $(seq 1 3);
+   do
+    echo  **** creando servidor $j;
+    rm -rf ~/nosql/mongo/p$j;
+    mkdir ~/nosql/mongo/p$j;
+    mongod  --config ~/Descargas/mongodb.conf --shardsvr --replSet r$HOSTNAME --dbpath ~/nosql/mongo/p$j --logpath ~/nosql/mongo/p$j/log --port 2700$j --fork --logappend --oplogSize 50
+done;
+
+lsof -iTCP -sTCP:LISTEN | grep mongo
+
+
+
+######################################Paso 2: INICIALIZAR REPLICA SET. 
+
+
+mongo --port 27001 --host $HOSTNAME
+# dentro del shell de mongo
+config = {
+              _id: "r"+hostname(),
+ 
+              members: [ 
+                               {_id:0, host:hostname()+":27001" }, 
+                               {_id:1, host:hostname()+":27002" },
+                               {_id:2, host:hostname()+":27003", priority:0, slaveDelay:60 }
+                         ]
+ 
+          }
+rs.initiate(config)
+
+#### Esperar y teclear
+rs.status()
+### Salir de mongo ##############
+
+
+
+##################################################################################
+
+########################################## Paso 3
+# Iniciar cliente
+mongo --port 27017 --host profes05
+
+########## dentro de mongo ejecutar y esperar a que se cree la coleccion
+
+use docs
+for (var i=0; i<200000; i++) {db.usuarios.insert({_id:hostname()+i,version:i});}
+
+######## probar en otro terminal
+mongo --port 27017 --host profes10
+####### dentro de mongo
+use docs
+db.usuarios.explain("executionStats").find({version:20000},{version:1,_id:0})
+
+
+
+

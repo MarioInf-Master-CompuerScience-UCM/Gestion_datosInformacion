@@ -1,0 +1,19 @@
+*** Resultado consulta_conjuncion:  I am happy city ***
+../20news-18828/talk.religion.misc/84169
+../20news-18828/soc.religion.christian/21493
+../20news-18828/talk.politics.mideast/76392
+../20news-18828/talk.politics.mideast/75370
+../20news-18828/talk.politics.mideast/75881
+../20news-18828/rec.autos/103349
+../20news-18828/comp.graphics/38853
+../20news-18828/comp.graphics/38376
+../20news-18828/sci.crypt/15177
+../20news-18828/rec.sport.hockey/53690
+../20news-18828/talk.politics.misc/178382
+../20news-18828/talk.politics.misc/178500
+*** Resultado consulta_vectorial:  I am happy city ***
+('../20news-18828/talk.politics.mideast/76333', 0.36519779168504835)
+('../20news-18828/misc.forsale/76814', 0.29231617893637496)
+('../20news-18828/sci.med/59246', 0.21004192965883028)
+('../20news-18828/sci.med/58131', 0.12540412342757)
+('../20news-18828/sci.med/59420', 0.12429330307938186)

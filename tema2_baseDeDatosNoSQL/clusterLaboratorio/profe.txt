@@ -1,0 +1,53 @@
+############################# Paso 0: Abrir un terminal
+
+
+############################# Paso 1: Inicializar servidores de configuracion
+
+cd
+rm -rf nosql
+mkdir nosql
+mkdir nosql/mongo
+for j in $(seq 1 3);
+   do
+    echo  **** creando servidor $j;
+    rm -rf ~/nosql/mongo/cfg$j;
+    mkdir ~/nosql/mongo/cfg$j;
+    mongod --config ~/Descargas/mongodb.conf --configsvr --replSet configrs --dbpath ~/nosql/mongo/cfg$j --logpath ~/nosql/mongo/cfg$j/log  --port 2605$j --fork --logappend --oplogSize 50;
+done;
+
+lsof -iTCP -sTCP:LISTEN | grep mongo
+####################################### Paso 2, iniciar configuración
+
+mongo --port 26051 --host $HOSTNAME
+# dentro del shell de mongo
+config = {
+              _id: "configrs",
+ 
+              members: [ 
+                               {_id:0, host:hostname()+":26051" }, 
+                               {_id:1, host:hostname()+":26052" },
+                               {_id:2, host:hostname()+":26053" }
+                         ]
+ 
+          }
+rs.initiate(config)
+
+#################### 3 Crear mongos
+### desde la línea de comandos
+mongos --config ~/Descargas/mongodb.conf --configdb configrs/$HOSTNAME:26051,$HOSTNAME:26052,$HOSTNAME:26053 --fork --logappend --logpath mongos1
+
+mongo
+
+// desde dentro de mongos
+sh.addShard( "rpto0501/pto0501:27001" )
+sh.addShard( "rpto0502/pto0502:27001" )
+sh.addShard( "rpto0514/pto1014:27001" )
+
+db.adminCommand({ enableSharding: "docs" })
+
+db.adminCommand( { shardCollection: "docs.usuarios", key: { _id: 1 } } )
+
+use docs
+db.usuarios.count()
+db.usuarios.createIndex({version:1})
+

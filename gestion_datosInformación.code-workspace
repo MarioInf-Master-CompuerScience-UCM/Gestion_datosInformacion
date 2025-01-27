@@ -1,0 +1,22 @@
+{
+    "folders": [
+        {
+            "path": "tema1_capturaYProcesamientoDeDatos"
+        },
+        {
+            "path": "tema2_baseDeDatosNoSQL"
+        },
+        {
+            "path": "tema3_basesDeDatosDistribuidas"
+        },
+        {
+            "path": "tema4_extraccionDeInformacion"
+        },
+        {
+            "path": "trabajoFinal"
+        },
+        {
+            "path": "."
+        },
+    ]
+}

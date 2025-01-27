@@ -1,0 +1,27 @@
+22/11/08 12:48:52 WARN Utils: Your hostname, debian resolves to a loopback address: 127.0.1.1; using 10.8.77.119 instead (on interface wlo1)
+22/11/08 12:48:52 WARN Utils: Set SPARK_LOCAL_IP if you need to bind to another address
+22/11/08 12:48:53 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
++-----------------------------+
+|corr(ibdmScore, numLocations)|
++-----------------------------+
+|          0.09194462445331097|
++-----------------------------+
+
++------------------------------------+
+|corr(ibdmScore, numFemaleCharacters)|
++------------------------------------+
+|                 0.10280982474901003|
++------------------------------------+
+
++-------------------------+
+|corr(ibdmScore, numLines)|
++-------------------------+
+|       0.2572090733503712|
++-------------------------+
+
++-------------------------+
+|corr(ibdmScore, numWords)|
++-------------------------+
+|      0.28817744774021964|
++-------------------------+
+

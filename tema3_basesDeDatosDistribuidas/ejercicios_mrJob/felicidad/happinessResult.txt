@@ -1,0 +1,5 @@
+"headache"	1.98
+"depression"	1.98
+"criminal"	1.98
+"fail"	1.96
+"disaster"	1.96
